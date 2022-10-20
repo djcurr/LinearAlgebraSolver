@@ -8,8 +8,7 @@ public:
 		row_ecehelon_form,
 		outer_product
 	};
-	LinearOperations(Operations operation, []Matrix matrices);
-	Matrix computeOuterProduct([]Matrix matrices);
+	Matrix computeOuterProduct(Matrix matrices[2]);
 	Matrix computeRowEcehelonForm(Matrix matrix);
 
 };

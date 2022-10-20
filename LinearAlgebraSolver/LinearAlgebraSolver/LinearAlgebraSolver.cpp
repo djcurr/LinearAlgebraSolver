@@ -3,10 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include "LinearOperations.h"
 
 int main()
 {
-    std::string selection;
+    /*std::string selection;
     std::cout << "Choose an operation.\n1. Row Ecehelon Form\n2. Outer Product\nOperation: \n";
     std::cin >> selection;
     switch (stoi(selection)) {
@@ -14,7 +15,26 @@ int main()
             break;
         case 2:
             break;
-    }
+    }*/
+
+    std::vector<std::vector<int>> matrix1
+    {
+        {3, 4, 2}
+    };
+
+    std::vector<std::vector<int>> matrix2
+    {
+        {13,9,7,15},
+        {8,7,4,6},
+        {6,4,0,3}
+    };
+    Matrix m1 = Matrix(matrix1);
+    Matrix m2 = Matrix(matrix2);
+    //matrix2[0][2];
+    Matrix matrices[2] = { m1, m2 };
+    LinearOperations linearOperations;
+    Matrix out = linearOperations.computeOuterProduct(matrices);
+    std::cout << out.toString();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
