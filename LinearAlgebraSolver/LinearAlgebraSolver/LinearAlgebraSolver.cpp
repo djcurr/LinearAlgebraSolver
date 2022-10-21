@@ -17,33 +17,25 @@ int main()
             break;
     }*/
 
-    std::vector<std::vector<int>> matrix1
+    std::vector<std::vector<double>> matrix1
     {
         {3, 4, 2}
     };
 
-    std::vector<std::vector<int>> matrix2
+    std::vector<std::vector<double>> matrix2
     {
-        {13,9,7,15},
-        {8,7,4,6},
-        {6,4,0,3}
+        {1,2,-1,-4},
+        {1,3,-1,-11},
+        {-2,0,-3,22}
     };
     Matrix m1 = Matrix(matrix1);
     Matrix m2 = Matrix(matrix2);
     //matrix2[0][2];
     Matrix matrices[2] = { m1, m2 };
     LinearOperations linearOperations;
-    Matrix out = linearOperations.computeOuterProduct(matrices);
+    //Matrix out = linearOperations.computeOuterProduct(matrices);
+    Matrix out = linearOperations.computeRowEcehelonForm(m2);
     std::cout << out.toString();
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
