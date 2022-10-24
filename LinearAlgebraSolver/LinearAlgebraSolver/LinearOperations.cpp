@@ -25,42 +25,51 @@ Matrix LinearOperations::computeOuterProduct(Matrix matrices[2])
 Matrix LinearOperations::computeRowEcehelonForm(Matrix matrix)
 {
     int pivot = 0;
-    int numRows = matrix.getNumRows();
-    int numCols = matrix.getNumCols();
+    size_t numRows = matrix.getNumRows();
+    size_t numCols = matrix.getNumCols();
     int i = 0;
 
     for (int r = 0; r < numRows; r++) {
-        std::cout << matrix.toString() + "\n";
+        /*std::string str = "---------------------\n";
+        std::cout << str + matrix.toString() << std::endl << "Row: " + std::to_string(r + 1) + "\n";*/
 
-        if (numCols < pivot) {
-            break;
+        if (pivot > numCols - 1) {
+            return matrix;
         }
         i = r;
 
         while (matrix.getIJ(i, pivot) == 0) {
             i = i + 1;
 
-            if (numRows == i) {
+            if (i > numRows - 1) {
                 i = r;
                 pivot = pivot + 1;
 
-                if (numCols == pivot) {
-                    break;
+                if (pivot > numCols - 1) {
+                    return matrix;
                 }
             }
         }
-        matrix.swapRow(i, r);
-        if (matrix.getIJ(r, pivot) != 0) {
-            matrix.scalarRowMultiply(r, matrix.getIJ(r, pivot));
+
+        if (i != r) {
+            matrix.swapRow(i, r);
+            // std::cout << str + matrix.toString() + "\nSwapped rows " + std::to_string(i + 1) + " and " + std::to_string(r + 1) << std::endl;
         }
 
-        for (i = 0; i < numRows; i++) {
+        if (matrix.getIJ(r, pivot) != 0 && matrix.getIJ(r, pivot) != 1) {
+            matrix.scalarRowDivide(r, matrix.getIJ(r, pivot));
+            // std::cout << str + matrix.toString() + "\nDivided row " + std::to_string(r + 1) + " by " + std::to_string(matrix.getIJ(r, pivot)) << std::endl;
+        }
+
+        for (i = 0; i < numRows; ++i) {
             if (i != r) {
                 std::vector<double> row = matrix.getRow(r);
                 for (size_t k = 0; k < row.size(); k++) {
-                    row[i] = row[i] * matrix.getIJ(i, pivot);
+                    row[k] = row[k] * matrix.getIJ(i, pivot) * -1;
                 }
-                matrix.subtractRow(i, row);
+                // std::string temp = std::to_string(matrix.getIJ(i, pivot) * -1);
+                matrix.addRow(i, row);
+                // std::cout << str + matrix.toString() + "\nAdded " + temp + "*row" + std::to_string(r+1) + " to row " + std::to_string(i + 1) << std::endl;
             }
         }
 

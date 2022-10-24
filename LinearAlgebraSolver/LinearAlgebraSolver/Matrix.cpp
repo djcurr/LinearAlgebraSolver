@@ -41,7 +41,7 @@ void Matrix::setRow(int rowNum, std::vector<double> row)
 //
 //}
 
-int Matrix::getNumRows()
+size_t Matrix::getNumRows()
 {
 	return matrix.size();
 }
@@ -57,6 +57,13 @@ void Matrix::scalarRowMultiply(int row, double scalar)
 {
 	for (int i = 0; i < matrix[row].size(); i++) {
 		matrix[row][i] = matrix[row][i] * scalar;
+	}
+}
+
+void Matrix::scalarRowDivide(int row, double scalar)
+{
+	for (int i = 0; i < matrix[row].size(); i++) {
+		matrix[row][i] = matrix[row][i] / scalar;
 	}
 }
 
@@ -78,7 +85,7 @@ void Matrix::subtractRow(int rowNum, std::vector<double> row)
 	setRow(rowNum, tempRow);
 }
 
-int Matrix::getNumCols()
+size_t Matrix::getNumCols()
 {
 	return matrix[0].size();
 }
@@ -90,6 +97,7 @@ std::string Matrix::toString()
 
 		for (int j = 0; j < matrix[0].size(); j++)
 		{
+			// std::to_string(this->getIJ(i, j)).substr(0, std::to_string(this->getIJ(i, j)).find_last_of(".")) + "\t"
 			out = out + " " + std::to_string(this->getIJ(i, j));
 		}
 		out = out + "\n";

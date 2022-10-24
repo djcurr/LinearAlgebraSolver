@@ -1,9 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-using namespace std;
-using namespace System::Diagnostics;
-[DebuggerDisplay("{toString()}")]
+
 class Matrix
 {
 public:
@@ -15,10 +13,11 @@ public:
 	//void setCol(int colNum, std::vector<int> col);
 	void swapRow(int row1, int row2);
 	void scalarRowMultiply(int row, double scalar);
+	void scalarRowDivide(int row, double scalar);
 	void addRow(int rowNum, std::vector<double> row);
 	void subtractRow(int rowNum, std::vector<double> row);
-	int getNumCols();
-	int getNumRows();
+	size_t getNumCols();
+	size_t getNumRows();
 	std::string toString();
 private:
 	std::vector<std::vector<double>> matrix;
