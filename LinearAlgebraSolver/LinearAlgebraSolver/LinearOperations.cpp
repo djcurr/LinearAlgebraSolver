@@ -1,5 +1,4 @@
 #include "LinearOperations.h"
-#include <iostream>
 
 
 Matrix LinearOperations::computeOuterProduct(Matrix matrices[2])
@@ -77,4 +76,25 @@ Matrix LinearOperations::computeRowEcehelonForm(Matrix matrix)
     }
 
     return matrix;
+}
+
+double LinearOperations::computeDeterminant(Matrix matrix)
+{
+    double result = 0;
+    double sign = 1;
+    size_t dimension = matrix.getNumCols();
+
+    if (dimension == 1) {
+        return matrix.getIJ(0, 0);
+    }
+
+    for (int i = 0; i < dimension; i++) {
+        Matrix tempMatrix(matrix);
+        tempMatrix.removeColumn(i);
+        tempMatrix.removeRow(0);
+        result += sign * matrix.getIJ(0, i) * computeDeterminant(tempMatrix);
+        sign *= -1;
+
+    }
+    return result;
 }

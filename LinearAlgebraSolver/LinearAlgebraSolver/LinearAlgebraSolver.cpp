@@ -1,9 +1,9 @@
 // LinearAlgebraSolver.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
-#include <string>
+
 #include "LinearOperations.h"
+#include <iostream>
 
 int main()
 {
@@ -17,7 +17,7 @@ int main()
             break;
     }*/
 
-    std::vector<std::vector<double>> matrix1
+    /*std::vector<std::vector<double>> matrix1
     {
         {3, 4, 2}
     };
@@ -35,17 +35,28 @@ int main()
         {25, 111, 58, 39, 34},
         {53, 65, 12, 74, 43},
         {35, 62, 52, 82, 464}
+    };*/
+
+    std::vector<std::vector<double>> matrix4
+    {
+        {15, 53, 19},
+        {25, 111, 58},
+        {53, 65, 12}
     };
 
-    Matrix m1 = Matrix(matrix1);
+    /*Matrix m1 = Matrix(matrix1);
     Matrix m2 = Matrix(matrix2);
-    Matrix m3 = Matrix(matrix3);
+    Matrix m3 = Matrix(matrix3);*/
+    Matrix m4 = Matrix(matrix4);
     //matrix2[0][2];
-    Matrix matrices[2] = { m1, m2 };
+    //Matrix matrices[2] = { m1, m2 };
     LinearOperations linearOperations;
     //Matrix out = linearOperations.computeOuterProduct(matrices);
-    Matrix out = linearOperations.computeRowEcehelonForm(m3);
-    std::cout << out.toString();
+    //Matrix out = linearOperations.computeRowEcehelonForm(m3);
+    double out = linearOperations.computeDeterminant(m4);
+    //std::cout << out.toString();
+    std::cout << out;
+    return 0;
 }
 
 

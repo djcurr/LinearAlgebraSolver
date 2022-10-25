@@ -10,6 +10,7 @@ public:
 	};
 	Matrix computeOuterProduct(Matrix matrices[2]);
 	Matrix computeRowEcehelonForm(Matrix matrix);
+	double computeDeterminant(Matrix matrix);
 
 };
 

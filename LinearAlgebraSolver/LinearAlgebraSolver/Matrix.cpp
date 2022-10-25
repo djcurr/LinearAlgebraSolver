@@ -6,6 +6,17 @@ Matrix::Matrix(std::vector<std::vector<double>> matrix)
 	this->matrix = matrix;
 }
 
+Matrix::Matrix(Matrix& tempMatrix)
+{
+	std::vector<std::vector<double>> matrix1(tempMatrix.getNumRows(), std::vector<double>(tempMatrix.getNumCols(), 0));
+	this->matrix = matrix1;
+	for (int i = 0; i < tempMatrix.getNumRows(); i++) {
+		for (int j = 0; j < tempMatrix.getNumCols(); j++) {
+			matrix[i][j] = tempMatrix.getIJ(i, j);
+		}
+	}
+}
+
 
 double Matrix::getIJ(int i, int j)
 {
@@ -83,6 +94,20 @@ void Matrix::subtractRow(int rowNum, std::vector<double> row)
 		tempRow[i] = tempRow[i] - row[i];
 	}
 	setRow(rowNum, tempRow);
+}
+
+void Matrix::removeRow(int rowNum)
+{
+	matrix.erase(matrix.begin() + rowNum);
+}
+
+void Matrix::removeColumn(int colNum)
+{
+	int numCols = getNumCols();
+	for (int i = 0; i < numCols; i++)
+	{
+		matrix[i].erase(matrix[i].begin() + colNum);
+	}
 }
 
 size_t Matrix::getNumCols()
